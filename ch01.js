@@ -103,14 +103,8 @@ console.log('doing data');
     return that;
 }
 
-document.getElementById('slider').addEventListener('change', function(e) {
-    console.log('yo ho');
-    var load;
-    if (e.value) {
-        load = parseFloat(e.value);
-    } else {
-        load = parseFloat(e.target.value);
-    }
+function changeLoad(load) {
+
 console.log(load);
     console.log('Controller load=', load);
 
@@ -127,4 +121,18 @@ console.log('created buffer');
     gnuplot.putFile('simulation.out', data.join('\n'));
     gnuplot.onOutput(data.join('\n'));
     runScript();
+}
+document.getElementById('slider').addEventListener('change', function(e) {
+        var load;
+    if (e.value) {
+        load = parseFloat(e.value);
+    } else {
+        load = parseFloat(e.target.value);
+    }
+
+  changeLoad(load);
 }, false);
+
+document.getElementById('slider').value = 0.5;
+
+changeLoad(0.5);
